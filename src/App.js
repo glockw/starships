@@ -1,24 +1,42 @@
-import logo from './logo.svg';
-import './App.css';
-
+import {
+  FormControl,
+  InputLabel,
+  makeStyles,
+  MenuItem,
+  Select,
+} from "@material-ui/core";
+import "./App.css";
+import Starchips from "./components/Starchips";
+import Layout from "./containers/Layout";
+import useFetch from "./hooks/useFetch";
+import { convertToCamelCase } from "./utils";
+const useStyles = makeStyles((theme) => ({
+  formControl: {
+    margin: theme.spacing(1),
+    minWidth: 120,
+  },
+  selectEmpty: {
+    marginTop: theme.spacing(2),
+  },
+}));
 function App() {
+  const { manufactures, starchips, loading } = useFetch();
+  const classes = useStyles();
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Layout>
+      <FormControl className={classes.formControl}>
+        <InputLabel> Manufacturers</InputLabel>
+        <Select>
+          {manufactures.map((m) => (
+            <MenuItem key={convertToCamelCase(m)} value={m}>
+              {m}
+            </MenuItem>
+          ))}
+        </Select>
+      </FormControl>
+      <Starchips data={starchips} />
+    </Layout>
   );
 }
 
