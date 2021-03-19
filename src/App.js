@@ -5,11 +5,13 @@ import {
   MenuItem,
   Select,
 } from "@material-ui/core";
+import { useContext } from "react";
 import "./App.css";
 import Starchips from "./components/Starchips";
 import Layout from "./containers/Layout";
-import StarshipContextProvider from "./context/StarshipContext";
-import useFetch from "./hooks/useFetch";
+import StarshipContextProvider, {
+  StarshipContext,
+} from "./context/StarshipContext";
 import { convertToCamelCase } from "./utils";
 const useStyles = makeStyles((theme) => ({
   formControl: {
@@ -21,22 +23,29 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 function AppComponent() {
-  const { manufactures, starchips, loading } = useFetch();
+  const { manufacturers, starships, changeManufacturer } = useContext(
+    StarshipContext
+  );
+
   const classes = useStyles();
+  const change = (evt) => {
+    const { value: manufacturer } = evt.target;
+    changeManufacturer(manufacturer);
+  };
 
   return (
     <Layout>
       <FormControl className={classes.formControl}>
         <InputLabel> Manufacturers</InputLabel>
-        <Select>
-          {manufactures.map((m) => (
+        <Select onChange={change}>
+          {manufacturers.map((m) => (
             <MenuItem key={convertToCamelCase(m)} value={m}>
               {m}
             </MenuItem>
           ))}
         </Select>
       </FormControl>
-      <Starchips data={starchips} />
+      <Starchips data={starships} />
     </Layout>
   );
 }

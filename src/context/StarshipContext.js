@@ -4,11 +4,12 @@ import useFetch from "../hooks/useFetch";
 const StarshipContext = createContext();
 
 const StarshipContextProvider = ({ children }) => {
-  const { manufactures, starchips, loading } = useFetch();
+  const { manufacturers, starships, loading, changeManufacturer } = useFetch();
   const providerValue = {
-    manufactures,
-    starchips,
+    manufacturers,
+    starships,
     loading,
+    changeManufacturer,
   };
   return (
     <StarshipContext.Provider value={providerValue}>

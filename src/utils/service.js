@@ -10,7 +10,7 @@ const transform = (results) => {
     (starship) => starship.manufacturer
   );
   const manufacturers = Object.keys(grouped_manufacturers);
-  return { manufacturers, starchips: results };
+  return { manufacturers, starships: results };
 };
 const get_manufacturers = () => {
   const requests = new Array(PAGES)
