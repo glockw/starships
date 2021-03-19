@@ -26,7 +26,7 @@ function App() {
   return (
     <Layout>
       <FormControl className={classes.formControl}>
-        <InputLabel id="demo-simple-select-label"> Manufacturers</InputLabel>
+        <InputLabel> Manufacturers</InputLabel>
         <Select>
           {manufactures.map((m) => (
             <MenuItem key={convertToCamelCase(m)} value={m}>

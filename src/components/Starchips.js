@@ -8,6 +8,7 @@ import TablePagination from "@material-ui/core/TablePagination";
 import TableRow from "@material-ui/core/TableRow";
 import React, { useMemo, useState } from "react";
 import { convertToCamelCase } from "../utils";
+import Starship from "./Starship";
 
 const styles = (theme) => ({
   root: {
@@ -33,25 +34,11 @@ const Starchips = ({ data = [], classes }) => {
     } = event;
     setRowsPerPage(value);
   };
-  const tr = (starship) => {
-    const { name, manufacturer, model, crew, passengers } = starship;
-    return (
-      <TableRow key={convertToCamelCase(name)}>
-        <TableCell component="th" scope="row">
-          {manufacturer}
-        </TableCell>
-        <TableCell align="right">{name}</TableCell>
-        <TableCell align="right">{model}</TableCell>
-        <TableCell align="right">{crew}</TableCell>
-        <TableCell align="right">{passengers}</TableCell>
-      </TableRow>
-    );
-  };
 
   const starchips = useMemo(() => {
     return data
       .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-      .map(tr);
+      .map((sc) => <Starship key={convertToCamelCase(sc.name)} {...sc} />);
   }, [data, page, rowsPerPage]);
 
   return (

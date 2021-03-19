@@ -46,7 +46,7 @@ const Layout = ({ children }) => {
       <CssBaseline />
       <Container component="main" className={classes.main} maxWidth="lg">
         <Typography variant="h2" component="h1" gutterBottom>
-          Sticky footer
+          Starships
         </Typography>
         {children}
       </Container>
