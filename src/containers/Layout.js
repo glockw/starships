@@ -44,7 +44,7 @@ const Layout = ({ children }) => {
   return (
     <div className={classes.root}>
       <CssBaseline />
-      <Container component="main" className={classes.main} maxWidth="sm">
+      <Container component="main" className={classes.main} maxWidth="lg">
         <Typography variant="h2" component="h1" gutterBottom>
           Sticky footer
         </Typography>

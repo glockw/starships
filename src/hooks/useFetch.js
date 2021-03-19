@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { get_manufacturers } from "../utils/service";
 
-export default function useFetch({ id = 0 }) {
+export default function useFetch() {
   const [loading, setLoading] = useState(false);
   const [manufactures, setManufacturers] = useState([]);
   const [starchips, setStarchips] = useState([]);

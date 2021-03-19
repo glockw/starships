@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 function App() {
-  const { manufactures, starchips, loading } = useFetch({ id: 0 });
+  const { manufactures, starchips, loading } = useFetch();
   const classes = useStyles();
 
   return (
