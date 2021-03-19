@@ -6,7 +6,8 @@ import TableCell from "@material-ui/core/TableCell";
 import TableHead from "@material-ui/core/TableHead";
 import TablePagination from "@material-ui/core/TablePagination";
 import TableRow from "@material-ui/core/TableRow";
-import React, { useMemo, useState } from "react";
+import React, { useContext, useMemo, useState } from "react";
+import { StarshipContext } from "../context/StarshipContext";
 import { convertToCamelCase } from "../utils";
 import Starship from "./Starship";
 
@@ -21,7 +22,9 @@ const styles = (theme) => ({
   },
 });
 
-const Starchips = ({ data = [], classes }) => {
+const Starchips = ({ classes }) => {
+  const { starships: data } = useContext(StarshipContext);
+
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
   const handleChangePage = (event, page) => {
