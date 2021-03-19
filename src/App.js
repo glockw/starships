@@ -8,6 +8,7 @@ import {
 import "./App.css";
 import Starchips from "./components/Starchips";
 import Layout from "./containers/Layout";
+import StarshipContextProvider from "./context/StarshipContext";
 import useFetch from "./hooks/useFetch";
 import { convertToCamelCase } from "./utils";
 const useStyles = makeStyles((theme) => ({
@@ -19,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(2),
   },
 }));
-function App() {
+function AppComponent() {
   const { manufactures, starchips, loading } = useFetch();
   const classes = useStyles();
 
@@ -39,5 +40,13 @@ function App() {
     </Layout>
   );
 }
+
+const App = () => {
+  return (
+    <StarshipContextProvider>
+      <AppComponent />
+    </StarshipContextProvider>
+  );
+};
 
 export default App;
